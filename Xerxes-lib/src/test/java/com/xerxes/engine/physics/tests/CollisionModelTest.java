@@ -5,7 +5,7 @@ import com.xerxes.engine.ui.Position;
 
 import junit.framework.TestCase;
 
-public class CollissionModelTest extends TestCase
+public class CollisionModelTest extends TestCase
 {
 	public void test_CollidesWith_whenCollisionModelIsASquare_andTestPointIsOutsideTheSquare_shouldReturnFalse()
 	{
