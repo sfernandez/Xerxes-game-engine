@@ -11,8 +11,8 @@ public class Collision
         this.secondActor = secondActor;
     }
 
-    public void isCollisionOccurred()
+    public boolean isCollisionOccurred()
     {
-
+        return firstActor.getCollisionModel().collidesWith(secondActor.getCollisionModel());
     }
 }

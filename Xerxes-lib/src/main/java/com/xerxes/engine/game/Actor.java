@@ -16,6 +16,9 @@
 
 package com.xerxes.engine.game;
 
+import com.xerxes.engine.physics.CollisionModel;
+import com.xerxes.engine.ui.Position;
+import com.xerxes.engine.ui.Size;
 import com.xerxes.engine.ui.Spriteable;
 import com.xerxes.engine.ui.animation.Animatable;
 
@@ -81,5 +84,20 @@ public class Actor
     public Spriteable getSprite(){
         return this.sprite;
     }
-	
+
+    public CollisionModel getCollisionModel()
+    {
+        Position spritePosition = sprite.getPosition();
+        Size spriteSize = sprite.getSize();
+        double xPos = spritePosition.getX();
+        double yPos = spritePosition.getY();
+        double mediumWidth = spriteSize.getWidth() / 2;
+        double mediumHeight = spriteSize.getHeight() / 2;
+        Position firstPosition = new Position(xPos-mediumWidth, yPos-mediumHeight, 0);
+        Position secondPosition = new Position(xPos+mediumWidth, yPos-mediumHeight, 0);
+        Position thirdPosition = new Position(xPos-mediumWidth, yPos+mediumHeight, 0);
+        Position fourthPosition = new Position(xPos+mediumWidth, yPos+mediumHeight, 0);
+        Position[] positions = new Position[]{firstPosition, secondPosition, thirdPosition, fourthPosition};
+        return new CollisionModel(positions);
+    }
 }
