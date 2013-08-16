@@ -10,8 +10,8 @@ public class CollisionModelTest extends TestCase
 	public void test_CollidesWith_whenCollisionModelIsASquare_andTestPointIsOutsideTheSquare_shouldReturnFalse()
 	{
 		CollisionModel sut = getSquareCollisionModel();
-		Position testPosition = new Position(20.0,15.0,1);
-		assertFalse("incorrect position",sut.collidesWith(testPosition));
+		Position[] testPosition = new Position[]{new Position(20.0,15.0,1)};
+		assertFalse("incorrect position",sut.collidesWith(new CollisionModel(testPosition)));
 	}
 	private CollisionModel getSquareCollisionModel() 
 	{
@@ -21,8 +21,8 @@ public class CollisionModelTest extends TestCase
 	public void test_CollidesWith_whenCollisionModelIsASquare_andTestPointIsInsideTheSquare_shouldReturnTrue()
 	{
 		CollisionModel sut = getSquareCollisionModel();
-		Position testPosition = new Position(5.0,5.0,1);
-		boolean actual = sut.collidesWith(testPosition);
+		Position[] testPosition = new Position[]{new Position(5.0,5.0,1)};
+		boolean actual = sut.collidesWith(new CollisionModel(testPosition));
 		assertTrue("incorrect position",actual);
 	}
 	/*public void test_CollidesWith_whenCollisionModelIsATriange_andTestPointIsInsideTheTriangle_shouldReturnTrue()

@@ -43,10 +43,30 @@ public class CollisionModel
 		minY=verticalPosList.get(0);
 		maxY=verticalPosList.get(verticalPosList.size()-1);
 	}
-	public boolean collidesWith(Position position)
-	{
-		if (position.getX() < minX || position.getX() > maxX || position.getY() < minY || position.getY() > maxY)return false;
-		return true;
 
-	}
+    public boolean collidesWith(CollisionModel collisionModel)
+    {
+        boolean minXCollision = collidesWithHorizontalAxis(collisionModel.minX);
+        boolean maxXCollision = collidesWithHorizontalAxis(collisionModel.maxX);
+        boolean minYCollision = collidesWithVerticalAxis(collisionModel.minY);
+        boolean maxYCollision = collidesWithVerticalAxis(collisionModel.maxY);
+        if((minXCollision || maxXCollision) && (minYCollision || maxYCollision)) return true;
+        return false;
+    }
+
+    private boolean collidesWithHorizontalAxis(double horizontalPosition)
+    {
+        return collidesWithPoint(horizontalPosition, minX, maxX);
+    }
+
+    private boolean collidesWithVerticalAxis(double verticalPosition)
+    {
+        return collidesWithPoint(verticalPosition, minY, maxY);
+    }
+
+    private boolean collidesWithPoint(double outerPos, double minPos, double maxPos)
+    {
+        if(outerPos >= minPos && outerPos <= maxPos) return true;
+        return false;
+    }
 }
