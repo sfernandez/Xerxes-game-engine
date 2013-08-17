@@ -4,15 +4,19 @@ public class Collision
 {
     private Actor firstActor;
     private Actor secondActor;
+    private CollisionAction action;
 
-    public Collision(Actor firstActor, Actor secondActor)
+    public Collision(Actor firstActor, Actor secondActor, CollisionAction action)
     {
         this.firstActor = firstActor;
         this.secondActor = secondActor;
+        this.action = action;
     }
 
-    public boolean isCollisionOccurred()
+    public void check()
     {
-        return firstActor.getCollisionModel().collidesWith(secondActor.getCollisionModel());
+        if(firstActor.getCollisionModel().collidesWith(secondActor.getCollisionModel())){
+            action.doAction(firstActor, secondActor);
+        }
     }
 }

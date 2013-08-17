@@ -21,7 +21,7 @@ public class CollisionRegister
             public void run()
             {
                 for(Collision collision : collisions){
-                    collision.isCollisionOccurred();
+                    collision.check();
                 }
             }
         };
@@ -37,9 +37,9 @@ public class CollisionRegister
         timer.cancel();
     }
 
-    public void registerCollision(Actor firstActor, Actor secondActor)
+    public void registerCollision(Actor firstActor, Actor secondActor, CollisionAction action)
     {
-        collisions.add(new Collision(firstActor, secondActor));
+        collisions.add(new Collision(firstActor, secondActor, action));
     }
 
     public static CollisionRegister getInstance()
