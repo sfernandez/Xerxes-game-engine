@@ -3,11 +3,9 @@ package com.example.client;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.Timer;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.RootPanel;
-import com.xerxes.engine.game.Actor;
-import com.xerxes.engine.game.ActorAction;
-import com.xerxes.engine.game.GameController;
-import com.xerxes.engine.game.KeyboardController;
+import com.xerxes.engine.game.*;
 import com.xerxes.engine.ui.*;
 import com.xerxes.engine.ui.animation.SpriteAnimation;
 import com.xerxes.engine.ui.animation.SpriteImageFrame;
@@ -31,7 +29,7 @@ public class Game implements EntryPoint
         SpriteImageFrame secondFrame=new SpriteImageFrame("martian2");
         animation.addFrame(frame, 5);
         animation.addFrame(secondFrame, 6, 10);
-		Actor martian = new Actor(martianSprite);
+		final Actor martian = new Actor(martianSprite);
         martian.addAnimation(animation);
 		Actor tank = new Actor(tankSprite);
         tank.addAction("moveLeft", new ActorAction() {
@@ -57,6 +55,13 @@ public class Game implements EntryPoint
             public void doAction(Actor currentActor) {
                 Charset charset=GWT.create(Charset.class);
                 final Sprite shotSprite=new Sprite("bullet", 0, 0, 1);
+                final Actor shotActor = new Actor(shotSprite);
+                CollisionRegister.getInstance().registerCollision(shotActor, martian, new CollisionAction() {
+                    @Override
+                    public void doAction(Actor firstActor, Actor secondActor) {
+                        Window.alert("shot!");
+                    }
+                });
                 shotSprite.resize(4,4);
                 shotSprite.addImage("shot", charset.Shot());
                 Spriteable sprite=currentActor.getSprite();
@@ -88,6 +93,7 @@ public class Game implements EntryPoint
 		martian.render();
         martian.play("martianMoving");
 		tank.render();
+        CollisionRegister.getInstance().start();
 	}
 
 }
