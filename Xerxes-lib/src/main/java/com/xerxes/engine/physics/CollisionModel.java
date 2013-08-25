@@ -14,11 +14,11 @@
     along with Xerxes game engine.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.xerxes.engine.physics;
+import com.xerxes.engine.ui.Position;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-import com.xerxes.engine.ui.Position;
 
 public class CollisionModel 
 {
@@ -26,6 +26,7 @@ public class CollisionModel
 	private double maxX;
 	private double minY;
 	private double maxY;
+    private Position[] points;
 	
 	public CollisionModel(Position[] points)
 	{
@@ -36,6 +37,7 @@ public class CollisionModel
 			horizontalPosList.add(pos.getX());
 			verticalPosList.add(pos.getY());
 		}
+        this.points = points;
 		Collections.sort(horizontalPosList);
 		Collections.sort(verticalPosList);
 		minX=horizontalPosList.get(0);
@@ -46,12 +48,15 @@ public class CollisionModel
 
     public boolean collidesWith(CollisionModel collisionModel)
     {
-        boolean minXCollision = collidesWithHorizontalAxis(collisionModel.minX);
-        boolean maxXCollision = collidesWithHorizontalAxis(collisionModel.maxX);
-        boolean minYCollision = collidesWithVerticalAxis(collisionModel.minY);
-        boolean maxYCollision = collidesWithVerticalAxis(collisionModel.maxY);
-        if((minXCollision || maxXCollision) && (minYCollision || maxYCollision)) return true;
+        for(Position position : collisionModel.points){
+            if(collidesWithPosition(position)) return true;
+        }
         return false;
+    }
+
+    private boolean collidesWithPosition(Position position)
+    {
+        return (collidesWithHorizontalAxis(position.getX()) && collidesWithVerticalAxis(position.getY()));
     }
 
     private boolean collidesWithHorizontalAxis(double horizontalPosition)
@@ -66,7 +71,6 @@ public class CollisionModel
 
     private boolean collidesWithPoint(double outerPos, double minPos, double maxPos)
     {
-        if(outerPos >= minPos && outerPos <= maxPos) return true;
-        return false;
+        return outerPos >= minPos && outerPos <= maxPos;
     }
 }

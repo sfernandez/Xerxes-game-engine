@@ -81,7 +81,8 @@ public class Actor
 		animations.get(animationName).play(sprite);
 	}
 
-    public Spriteable getSprite(){
+    public Spriteable getSprite()
+    {
         return this.sprite;
     }
 
@@ -91,12 +92,12 @@ public class Actor
         Size spriteSize = sprite.getSize();
         double xPos = spritePosition.getX();
         double yPos = spritePosition.getY();
-        double mediumWidth = spriteSize.getWidth() / 2;
-        double mediumHeight = spriteSize.getHeight() / 2;
-        Position firstPosition = new Position(xPos-mediumWidth, yPos-mediumHeight, 0);
-        Position secondPosition = new Position(xPos+mediumWidth, yPos-mediumHeight, 0);
-        Position thirdPosition = new Position(xPos-mediumWidth, yPos+mediumHeight, 0);
-        Position fourthPosition = new Position(xPos+mediumWidth, yPos+mediumHeight, 0);
+        double width = spriteSize.getWidth();
+        double height = spriteSize.getHeight();
+        Position firstPosition = new Position(xPos, yPos, 0);
+        Position secondPosition = new Position(xPos+width, yPos, 0);
+        Position thirdPosition = new Position(xPos, yPos+height, 0);
+        Position fourthPosition = new Position(xPos+width, yPos+height, 0);
         Position[] positions = new Position[]{firstPosition, secondPosition, thirdPosition, fourthPosition};
         return new CollisionModel(positions);
     }
