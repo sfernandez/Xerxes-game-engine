@@ -26,7 +26,6 @@ public class CollisionModel {
     private double maxX;
     private double minY;
     private double maxY;
-    private Position[] points;
 
     public CollisionModel(Position[] points) {
         List<Double> horizontalPosList = new ArrayList<Double>();
@@ -35,7 +34,6 @@ public class CollisionModel {
             horizontalPosList.add(pos.getX());
             verticalPosList.add(pos.getY());
         }
-        this.points = points;
         Collections.sort(horizontalPosList);
         Collections.sort(verticalPosList);
         minX = horizontalPosList.get(0);
@@ -45,14 +43,14 @@ public class CollisionModel {
     }
 
     public boolean collidesWith(CollisionModel collisionModel) {
-        for (Position position : collisionModel.points) {
-            if (collidesWithPosition(position)) return true;
+        boolean collidesMinPosX = collidesWithHorizontalAxis(collisionModel.minX);
+        boolean collidesMaxPosX = collidesWithHorizontalAxis(collisionModel.maxX);
+        boolean collidesMinPosY = collidesWithVerticalAxis(collisionModel.minY);
+        boolean collidesMaxPosY = collidesWithVerticalAxis(collisionModel.maxY);
+        if((collidesMinPosX || collidesMaxPosX) && (collidesMinPosY || collidesMaxPosY)){
+            return true;
         }
         return false;
-    }
-
-    private boolean collidesWithPosition(Position position) {
-        return (collidesWithHorizontalAxis(position.getX()) && collidesWithVerticalAxis(position.getY()));
     }
 
     private boolean collidesWithHorizontalAxis(double horizontalPosition) {

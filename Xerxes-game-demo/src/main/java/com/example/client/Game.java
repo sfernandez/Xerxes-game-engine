@@ -58,7 +58,7 @@ public class Game implements EntryPoint {
                 CollisionRegister.getInstance().registerCollision(martian, shotActor, new CollisionAction() {
                     @Override
                     public void doAction(Actor firstActor, Actor secondActor) {
-                        Window.alert("shot!");
+                        Window.alert("shot gotcha!!!!! yeah!");
                     }
                 });
                 shotSprite.resize(4, 4);

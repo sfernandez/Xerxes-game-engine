@@ -12,7 +12,9 @@ public class Collision {
     }
 
     public void check() {
-        if (firstActor.getCollisionModel().collidesWith(secondActor.getCollisionModel())) {
+        boolean firstCollision = firstActor.getCollisionModel().collidesWith(secondActor.getCollisionModel());
+        boolean secondCollision = secondActor.getCollisionModel().collidesWith(firstActor.getCollisionModel());
+        if (firstCollision || secondCollision) {
             action.doAction(firstActor, secondActor);
         }
     }
