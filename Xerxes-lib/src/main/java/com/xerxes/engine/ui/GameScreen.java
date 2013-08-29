@@ -42,7 +42,7 @@ public class GameScreen extends Widget {
     public GameScreen(final com.xerxes.engine.ui.Position position, final Size size, String backColor, String borderColor, final GameController[] controllers) {
         this.position = position;
         this.size = size;
-        actorList =new ArrayList<Actor>();
+        actorList = new ArrayList<Actor>();
         divElement = Document.get().createDivElement();
         divElement.getStyle().setBackgroundColor(backColor);
         divElement.getStyle().setBorderStyle(BorderStyle.SOLID);
@@ -70,14 +70,14 @@ public class GameScreen extends Widget {
         });
         setElement(divElement);
         this.setVisible(false);
-        final Timer t =new Timer(){
+        final Timer t = new Timer() {
             @Override
             public void run() {
-                for(int counter=0;counter< actorList.size();counter++){
-                    Actor currentActor= actorList.get(counter);
-                    com.xerxes.engine.ui.Position spritePosition=currentActor.getSprite().getPosition();
-                    double screenBorderX=size.getWidth();
-                    if(spritePosition.getX()>screenBorderX || spritePosition.getX()<0){
+                for (int counter = 0; counter < actorList.size(); counter++) {
+                    Actor currentActor = actorList.get(counter);
+                    com.xerxes.engine.ui.Position spritePosition = currentActor.getSprite().getPosition();
+                    double screenBorderX = size.getWidth();
+                    if (spritePosition.getX() > screenBorderX || spritePosition.getX() < 0) {
 
                     }
                 }
@@ -90,7 +90,7 @@ public class GameScreen extends Widget {
         if (!this.isVisible()) this.setVisible(true);
     }
 
-    public void addActor(Actor actor){
+    public void addActor(Actor actor) {
         this.addSprite(actor.getSprite());
         actorList.add(actor);
     }

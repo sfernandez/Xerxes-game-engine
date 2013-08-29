@@ -15,13 +15,13 @@
  */
 package com.xerxes.engine.ui;
 
-public interface Movable 
-{
-	/**
-	 * notifies to the registered object the change of a position object
-	 * @param posX new horizontal position in pixels
-	 * @param posY new vertical position in pixels
-	 * @param posZ depth level
-	 */
-	public void notifyMove(double posX,double posY,int posZ);
+public interface Movable {
+    /**
+     * notifies to the registered object the change of a position object
+     *
+     * @param posX new horizontal position in pixels
+     * @param posY new vertical position in pixels
+     * @param posZ depth level
+     */
+    public void notifyMove(double posX, double posY, int posZ);
 }

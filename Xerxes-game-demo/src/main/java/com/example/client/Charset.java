@@ -10,14 +10,16 @@ import com.google.gwt.resources.client.ImageResource;
  * Time: 21:00
  * To change this template use File | Settings | File Templates.
  */
-public interface Charset extends ClientBundle
-{
+public interface Charset extends ClientBundle {
     @Source("../resources/martian1.gif")
     public ImageResource Martian1();
+
     @Source("../resources/martian2.gif")
     public ImageResource Martian2();
+
     @Source("../resources/tank.gif")
     public ImageResource Tank();
+
     @Source("../resources/shot.gif")
     public ImageResource Shot();
 }

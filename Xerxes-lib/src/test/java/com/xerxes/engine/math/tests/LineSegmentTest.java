@@ -17,46 +17,45 @@ package com.xerxes.engine.math.tests;
 
 import com.xerxes.engine.math.LineSegment;
 import com.xerxes.engine.ui.Position;
-
 import junit.framework.TestCase;
 
-public class LineSegmentTest extends TestCase{
-	
-	private Position initialPosition;
-	private Position finalPosition;
-	
-	@Override
-	protected void setUp()throws Exception
-	{
-		initialPosition = new Position(0,0,0);
-		finalPosition = new Position (10,10,0);
-	}
-	public void testConstructALineWithAnInitialPositionAndAfinalPositionReturnsALineConfigured()
-	{
-		LineSegment segment = new LineSegment(initialPosition,finalPosition);
-		assertEquals("incorrect initial position",initialPosition,segment.getInitialPosition());
-		assertEquals("incorrect final position",finalPosition,segment.getFinalPosition());
-	}
-	public void testGetPositionWithAnIncrementOf2ReturnsPoint2x2y()
-	{
-		Position expectedPosition = new Position(2,2,0);
-		LineSegment segment = new LineSegment(initialPosition,finalPosition);
-		Position actualPosition = segment.getPosition(2);
-		assertEquals("incorrect position",expectedPosition,actualPosition);
-	}
-	public void testPendentgetPendentReturnsCorrectPendent(){
-		double expectedValue = 1; 
-		LineSegment segment = new LineSegment(initialPosition,finalPosition);
-		LineSegment.Pendent pendent = segment.getPendent();
-		double actualValue = pendent.getPendent();
-		assertEquals("incorrect pendent",expectedValue,actualValue);
-	}
-	public void testGetLineEquationShouldReturnTheLineEquationValue()
-	{
-		double expected = 1.5;
-		LineSegment segment = new LineSegment(new Position(2.0,2.0,1),new Position(10.0,4.0,1));
-		double actual = segment.getLineEq();
-		assertEquals("incorrect line",expected, actual);
-	}
-	
+public class LineSegmentTest extends TestCase {
+
+    private Position initialPosition;
+    private Position finalPosition;
+
+    @Override
+    protected void setUp() throws Exception {
+        initialPosition = new Position(0, 0, 0);
+        finalPosition = new Position(10, 10, 0);
+    }
+
+    public void testConstructALineWithAnInitialPositionAndAfinalPositionReturnsALineConfigured() {
+        LineSegment segment = new LineSegment(initialPosition, finalPosition);
+        assertEquals("incorrect initial position", initialPosition, segment.getInitialPosition());
+        assertEquals("incorrect final position", finalPosition, segment.getFinalPosition());
+    }
+
+    public void testGetPositionWithAnIncrementOf2ReturnsPoint2x2y() {
+        Position expectedPosition = new Position(2, 2, 0);
+        LineSegment segment = new LineSegment(initialPosition, finalPosition);
+        Position actualPosition = segment.getPosition(2);
+        assertEquals("incorrect position", expectedPosition, actualPosition);
+    }
+
+    public void testPendentgetPendentReturnsCorrectPendent() {
+        double expectedValue = 1;
+        LineSegment segment = new LineSegment(initialPosition, finalPosition);
+        LineSegment.Pendent pendent = segment.getPendent();
+        double actualValue = pendent.getPendent();
+        assertEquals("incorrect pendent", expectedValue, actualValue);
+    }
+
+    public void testGetLineEquationShouldReturnTheLineEquationValue() {
+        double expected = 1.5;
+        LineSegment segment = new LineSegment(new Position(2.0, 2.0, 1), new Position(10.0, 4.0, 1));
+        double actual = segment.getLineEq();
+        assertEquals("incorrect line", expected, actual);
+    }
+
 }

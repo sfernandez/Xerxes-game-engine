@@ -33,131 +33,128 @@ import com.xerxes.engine.ui.animation.Animatable;
 import com.xerxes.engine.ui.animation.SpriteAnimation;
 import com.xerxes.engine.ui.animation.SpritePositionFrame;
 
-public class Xerxes implements EntryPoint 
-{
+public class Xerxes implements EntryPoint {
 
-	public void onModuleLoad() 
-	{
-		Button createSprite = new Button();
-		Button createAnimation = new Button();
-		Button createInterpolationAnimation = new Button();
-		Button createReverseInterpolationAnimation=new Button();
-		Button createGameScreen = new Button();
-		createSprite.setText("Create Basic Sprite");
-		createAnimation.setText("Create Basic Sprite Animation");
-		createInterpolationAnimation.setText("Create Interpolation Animation");
-		createReverseInterpolationAnimation.setText("Create Reverse Interpolation Animation");
+    public void onModuleLoad() {
+        Button createSprite = new Button();
+        Button createAnimation = new Button();
+        Button createInterpolationAnimation = new Button();
+        Button createReverseInterpolationAnimation = new Button();
+        Button createGameScreen = new Button();
+        createSprite.setText("Create Basic Sprite");
+        createAnimation.setText("Create Basic Sprite Animation");
+        createInterpolationAnimation.setText("Create Interpolation Animation");
+        createReverseInterpolationAnimation.setText("Create Reverse Interpolation Animation");
 
-		createAnimation.addClickHandler(new ClickHandler(){
+        createAnimation.addClickHandler(new ClickHandler() {
 
-			public void onClick(ClickEvent event) {
-				createAndPlaySimpleAnimation();
-				
-			}
+            public void onClick(ClickEvent event) {
+                createAndPlaySimpleAnimation();
 
-			
-		});
-		createSprite.addClickHandler(new ClickHandler(){
-			public void onClick(ClickEvent event) 
-			{
-				createAndRenderSimpleSprite();
-			}
-		});
-		createInterpolationAnimation.addClickHandler(new ClickHandler() {
-			
-			public void onClick(ClickEvent event) 
-			{
-				createAndRenderInterpolationAnimation();		
-			}
-		});
-		createReverseInterpolationAnimation.addClickHandler(new ClickHandler() {
-			
-			public void onClick(ClickEvent event) {
-				createAnRenderReverseInterpolationAnimation();
-				
-			}
-		});
-		
-		
-		RootPanel.get().add(createSprite);
-		RootPanel.get().add(createAnimation);
-		RootPanel.get().add(createInterpolationAnimation);
-		RootPanel.get().add(createReverseInterpolationAnimation);
-		RootPanel.get().add(createGameScreen);
-	}
-	private void createAndRenderInterpolationAnimation()
-	{
-		Sprite testSprite = createTestSprite();
-		Animatable testAnim = new SpriteAnimation("testAnim");
-		testAnim.addFrame(new SpritePositionFrame("compass", new Position(50,50,50), testSprite.getSize()));
-		testAnim.addFrame(new SpritePositionFrame("compass", new Position(100, 100, 10), testSprite.getSize()), 12, 24);
-		testAnim.play(testSprite);
-	}
-	private void createAnRenderReverseInterpolationAnimation()
-	{
-		Sprite testSprite = createTestSprite();
-		Animatable testAnim = new SpriteAnimation("testAnim");
-		testAnim.addFrame(new SpritePositionFrame("compass", new Position(100, 100, 10), testSprite.getSize()));
-		testAnim.addFrame(new SpritePositionFrame("compass", new Position(50, 50, 50), testSprite.getSize()), 12, 24);
-		testAnim.play(testSprite);
-	}
-	private void createAndRenderSimpleSprite()
-	{
-		Sprite testSprite = createTestSprite();
-		testSprite.render("compass");
-	}
-	private Sprite createTestSprite()
-	{
-		Sprite testSprite = new Sprite("test");
+            }
+
+
+        });
+        createSprite.addClickHandler(new ClickHandler() {
+            public void onClick(ClickEvent event) {
+                createAndRenderSimpleSprite();
+            }
+        });
+        createInterpolationAnimation.addClickHandler(new ClickHandler() {
+
+            public void onClick(ClickEvent event) {
+                createAndRenderInterpolationAnimation();
+            }
+        });
+        createReverseInterpolationAnimation.addClickHandler(new ClickHandler() {
+
+            public void onClick(ClickEvent event) {
+                createAnRenderReverseInterpolationAnimation();
+
+            }
+        });
+
+
+        RootPanel.get().add(createSprite);
+        RootPanel.get().add(createAnimation);
+        RootPanel.get().add(createInterpolationAnimation);
+        RootPanel.get().add(createReverseInterpolationAnimation);
+        RootPanel.get().add(createGameScreen);
+    }
+
+    private void createAndRenderInterpolationAnimation() {
+        Sprite testSprite = createTestSprite();
+        Animatable testAnim = new SpriteAnimation("testAnim");
+        testAnim.addFrame(new SpritePositionFrame("compass", new Position(50, 50, 50), testSprite.getSize()));
+        testAnim.addFrame(new SpritePositionFrame("compass", new Position(100, 100, 10), testSprite.getSize()), 12, 24);
+        testAnim.play(testSprite);
+    }
+
+    private void createAnRenderReverseInterpolationAnimation() {
+        Sprite testSprite = createTestSprite();
+        Animatable testAnim = new SpriteAnimation("testAnim");
+        testAnim.addFrame(new SpritePositionFrame("compass", new Position(100, 100, 10), testSprite.getSize()));
+        testAnim.addFrame(new SpritePositionFrame("compass", new Position(50, 50, 50), testSprite.getSize()), 12, 24);
+        testAnim.play(testSprite);
+    }
+
+    private void createAndRenderSimpleSprite() {
+        Sprite testSprite = createTestSprite();
+        testSprite.render("compass");
+    }
+
+    private Sprite createTestSprite() {
+        Sprite testSprite = new Sprite("test");
         createAndAddSprite(testSprite);
-		ImageBundleExample testBundle = GWT.create(ImageBundleExample.class);
-		testSprite.addImage("compass",testBundle.CompassIcon());
-		return testSprite;
-	}
-	private void createAndPlaySimpleAnimation() {
-		SpriteAnimation.setFps(12);
-		Sprite testSprite = new Sprite("AnimationTest");
-		TestSpriteAnimation animBundle = GWT.create(TestSpriteAnimation.class);
-		testSprite.addImage("NW1",animBundle.NW1());
-		testSprite.addImage("NW2",animBundle.NW2());
-		testSprite.addImage("NW3",animBundle.NW3());
-		testSprite.addImage("NW4",animBundle.NW4());
-		testSprite.addImage("NW5",animBundle.NW5());
-		testSprite.addImage("NW6",animBundle.NW6());
-		testSprite.addImage("NW7",animBundle.NW7());
-		testSprite.addImage("NW8",animBundle.NW8());
-		testSprite.addImage("NW9",animBundle.NW9());
-		testSprite.addImage("NW10",animBundle.NW10());
-		testSprite.addImage("NW11",animBundle.NW11());
-		testSprite.addImage("NW12",animBundle.NW12());
-		testSprite.addImage("NW13",animBundle.NW13());
+        ImageBundleExample testBundle = GWT.create(ImageBundleExample.class);
+        testSprite.addImage("compass", testBundle.CompassIcon());
+        return testSprite;
+    }
+
+    private void createAndPlaySimpleAnimation() {
+        SpriteAnimation.setFps(12);
+        Sprite testSprite = new Sprite("AnimationTest");
+        TestSpriteAnimation animBundle = GWT.create(TestSpriteAnimation.class);
+        testSprite.addImage("NW1", animBundle.NW1());
+        testSprite.addImage("NW2", animBundle.NW2());
+        testSprite.addImage("NW3", animBundle.NW3());
+        testSprite.addImage("NW4", animBundle.NW4());
+        testSprite.addImage("NW5", animBundle.NW5());
+        testSprite.addImage("NW6", animBundle.NW6());
+        testSprite.addImage("NW7", animBundle.NW7());
+        testSprite.addImage("NW8", animBundle.NW8());
+        testSprite.addImage("NW9", animBundle.NW9());
+        testSprite.addImage("NW10", animBundle.NW10());
+        testSprite.addImage("NW11", animBundle.NW11());
+        testSprite.addImage("NW12", animBundle.NW12());
+        testSprite.addImage("NW13", animBundle.NW13());
         createAndAddSprite(testSprite);
-		Animatable testAnim = new SpriteAnimation("testAnim");
-		testAnim.addFrame(new SpritePositionFrame("NW1",testSprite.getPosition(),testSprite.getSize()));
-		testAnim.addFrame(new SpritePositionFrame("NW2",testSprite.getPosition(),testSprite.getSize()));
-		testAnim.addFrame(new SpritePositionFrame("NW3",testSprite.getPosition(),testSprite.getSize()));
-		testAnim.addFrame(new SpritePositionFrame("NW4",testSprite.getPosition(),testSprite.getSize()));
-		testAnim.addFrame(new SpritePositionFrame("NW5",testSprite.getPosition(),testSprite.getSize()));
-		testAnim.addFrame(new SpritePositionFrame("NW6",testSprite.getPosition(),testSprite.getSize()));
-		testAnim.addFrame(new SpritePositionFrame("NW7",testSprite.getPosition(),testSprite.getSize()));
-		testAnim.addFrame(new SpritePositionFrame("NW8",testSprite.getPosition(),testSprite.getSize()));
-		testAnim.addFrame(new SpritePositionFrame("NW9",testSprite.getPosition(),testSprite.getSize()));
-		testAnim.addFrame(new SpritePositionFrame("NW10",testSprite.getPosition(),testSprite.getSize()));
-		testAnim.addFrame(new SpritePositionFrame("NW11",testSprite.getPosition(),testSprite.getSize()));
-		testAnim.addFrame(new SpritePositionFrame("NW12",testSprite.getPosition(),testSprite.getSize()));
-		testAnim.addFrame(new SpritePositionFrame("NW13",testSprite.getPosition(),testSprite.getSize()));
-		testAnim.play(testSprite);
-	}
-	private GameScreen createAGameScreen()
-	{
-		GameScreen gs = new GameScreen(new Position(100,100,1),new Size(300,300),new GameController[]{new KeyboardController()});
-		gs.render();
-		RootPanel.get().add(gs);
+        Animatable testAnim = new SpriteAnimation("testAnim");
+        testAnim.addFrame(new SpritePositionFrame("NW1", testSprite.getPosition(), testSprite.getSize()));
+        testAnim.addFrame(new SpritePositionFrame("NW2", testSprite.getPosition(), testSprite.getSize()));
+        testAnim.addFrame(new SpritePositionFrame("NW3", testSprite.getPosition(), testSprite.getSize()));
+        testAnim.addFrame(new SpritePositionFrame("NW4", testSprite.getPosition(), testSprite.getSize()));
+        testAnim.addFrame(new SpritePositionFrame("NW5", testSprite.getPosition(), testSprite.getSize()));
+        testAnim.addFrame(new SpritePositionFrame("NW6", testSprite.getPosition(), testSprite.getSize()));
+        testAnim.addFrame(new SpritePositionFrame("NW7", testSprite.getPosition(), testSprite.getSize()));
+        testAnim.addFrame(new SpritePositionFrame("NW8", testSprite.getPosition(), testSprite.getSize()));
+        testAnim.addFrame(new SpritePositionFrame("NW9", testSprite.getPosition(), testSprite.getSize()));
+        testAnim.addFrame(new SpritePositionFrame("NW10", testSprite.getPosition(), testSprite.getSize()));
+        testAnim.addFrame(new SpritePositionFrame("NW11", testSprite.getPosition(), testSprite.getSize()));
+        testAnim.addFrame(new SpritePositionFrame("NW12", testSprite.getPosition(), testSprite.getSize()));
+        testAnim.addFrame(new SpritePositionFrame("NW13", testSprite.getPosition(), testSprite.getSize()));
+        testAnim.play(testSprite);
+    }
+
+    private GameScreen createAGameScreen() {
+        GameScreen gs = new GameScreen(new Position(100, 100, 1), new Size(300, 300), new GameController[]{new KeyboardController()});
+        gs.render();
+        RootPanel.get().add(gs);
         return gs;
-	}
+    }
 
-    private void createAndAddSprite(Sprite sprite){
-        GameScreen gs=createAGameScreen();
+    private void createAndAddSprite(Sprite sprite) {
+        GameScreen gs = createAGameScreen();
         gs.addSprite(sprite);
     }
 

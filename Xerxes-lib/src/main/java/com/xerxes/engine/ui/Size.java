@@ -18,69 +18,63 @@ package com.xerxes.engine.ui;
 
 /**
  * represents the size of an object in the xerxes framework
- * @author Sergi Fernández Cristià ||*||
  *
+ * @author Sergi Fernández Cristià ||*||
  */
-public class Size 
-{
-	private double width;
-	private double height;
-	private Resizeable notifier;
-	
-	/**
-	 * constructor
-	 * @param registeredObject object to whom report size changes
-	 * @param w the width of the object
-	 * @param h the height of the object
-	 */
-	public Size(Resizeable registeredObject,double w,double h)
-	{
-		this(w,h);
-		notifier=registeredObject;
-		notifier.notifyResize(w, h);
-	}
-	public Size(double w,double h)
-	{
-		width=w;
-		height=h;
-	}
-	/**
-	 * 
-	 * @return the width of the object
-	 */
-	public double getWidth()
-	{
-		return width;
-	}
-	
-	public void setWidth(double width)
-	{
-		this.width=width;
-	}
-	
-	/**
-	 * 
-	 * @return the height of the object
-	 */
-	public double getHeight()
-	{
-		return height;
-	}
-	
-	public void setHeight(double height)
-	{
-		this.height=height;
-	}
-	
-	/**
-	 * new size of the object
-	 * @param newW new Width
-	 * @param newH new Height
-	 */
-	public void resize(double newW, double newH) 
-	{
-		width=newW;
-		height=newH;
-		if(notifier!=null)notifier.notifyResize(newW, newH);
-	}
+public class Size {
+    private double width;
+    private double height;
+    private Resizeable notifier;
+
+    /**
+     * constructor
+     *
+     * @param registeredObject object to whom report size changes
+     * @param w                the width of the object
+     * @param h                the height of the object
+     */
+    public Size(Resizeable registeredObject, double w, double h) {
+        this(w, h);
+        notifier = registeredObject;
+        notifier.notifyResize(w, h);
+    }
+
+    public Size(double w, double h) {
+        width = w;
+        height = h;
+    }
+
+    /**
+     * @return the width of the object
+     */
+    public double getWidth() {
+        return width;
+    }
+
+    public void setWidth(double width) {
+        this.width = width;
+    }
+
+    /**
+     * @return the height of the object
+     */
+    public double getHeight() {
+        return height;
+    }
+
+    public void setHeight(double height) {
+        this.height = height;
+    }
+
+    /**
+     * new size of the object
+     *
+     * @param newW new Width
+     * @param newH new Height
+     */
+    public void resize(double newW, double newH) {
+        width = newW;
+        height = newH;
+        if (notifier != null) notifier.notifyResize(newW, newH);
+    }
 }

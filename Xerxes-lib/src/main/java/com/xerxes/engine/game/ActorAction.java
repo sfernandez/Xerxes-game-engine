@@ -1,6 +1,5 @@
 package com.xerxes.engine.game;
 
-public interface ActorAction 
-{
-	void doAction(Actor currentActor);
+public interface ActorAction {
+    void doAction(Actor currentActor);
 }

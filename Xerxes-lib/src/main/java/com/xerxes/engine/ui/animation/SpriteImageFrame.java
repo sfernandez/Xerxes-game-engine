@@ -5,9 +5,9 @@ import com.xerxes.engine.ui.Size;
 import com.xerxes.engine.ui.Spriteable;
 
 
-public class SpriteImageFrame extends AbstractSpriteFrame{
+public class SpriteImageFrame extends AbstractSpriteFrame {
 
-    public SpriteImageFrame(String imageName){
+    public SpriteImageFrame(String imageName) {
         this(imageName, null, null);
     }
 
@@ -19,7 +19,7 @@ public class SpriteImageFrame extends AbstractSpriteFrame{
     @Override
     public void play(Spriteable sprite) {
         sprite.render(currentImageName);
-        if(currentSize!=null) sprite.resize(currentSize.getWidth(), currentSize.getHeight());
+        if (currentSize != null) sprite.resize(currentSize.getWidth(), currentSize.getHeight());
     }
 
 }

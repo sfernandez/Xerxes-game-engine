@@ -2,16 +2,16 @@ package com.xerxes.engine.gwt.tests;
 
 import com.google.gwt.junit.client.GWTTestCase;
 
-public class GwtTestGameScreen extends GWTTestCase
-{
+public class GwtTestGameScreen extends GWTTestCase {
     @Override
     public String getModuleName() {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
-    public void test_render_called_shouldRenderTheGameScreenCorrectly(){
-            assertTrue(true);
+
+    public void test_render_called_shouldRenderTheGameScreenCorrectly() {
+        assertTrue(true);
     }
-	/*private GameScreen sut;
+    /*private GameScreen sut;
 	private static final String bgColor="#FFFFFF";
 	private static final String borderColor="#000000";
 	private static final double xPos=100;

@@ -21,18 +21,16 @@ import com.xerxes.engine.ui.Spriteable;
 
 /**
  * represents a single frame inside the spriteAnimation
- * @author Sergi Fernández Cristià ||*||
  *
+ * @author Sergi Fernández Cristià ||*||
  */
-public class SpritePositionFrame extends AbstractSpriteFrame
-{
+public class SpritePositionFrame extends AbstractSpriteFrame {
     public SpritePositionFrame(String imageName, Position position, Size size) {
         super(imageName, position, size);
     }
 
-    public void play(Spriteable sprite)
-	{
-		sprite.changeLocation(currentPosition.getX(), currentPosition.getY());
-		sprite.changeDepth(currentPosition.getZ());
-	}
+    public void play(Spriteable sprite) {
+        sprite.changeLocation(currentPosition.getX(), currentPosition.getY());
+        sprite.changeDepth(currentPosition.getZ());
+    }
 }

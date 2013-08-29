@@ -15,12 +15,12 @@
  */
 package com.xerxes.engine.ui;
 
-public interface Resizeable 
-{
-	/**
-	 * notifies to the registered object a change in the the size
-	 * @param width new width
-	 * @param height new height
-	 */
-	public void notifyResize(double width,double height);
+public interface Resizeable {
+    /**
+     * notifies to the registered object a change in the the size
+     *
+     * @param width  new width
+     * @param height new height
+     */
+    public void notifyResize(double width, double height);
 }

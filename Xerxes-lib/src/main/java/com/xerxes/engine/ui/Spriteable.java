@@ -18,15 +18,22 @@ package com.xerxes.engine.ui;
 import com.google.gwt.dom.client.DivElement;
 import com.google.gwt.resources.client.ImageResource;
 
-public interface Spriteable extends Movable,Resizeable 
-{
-	public Position getPosition();
-	public void addImage(String imageName,ImageResource imagePrototype);
-	public void render(String imageName);
-	public void render();
-	public void changeLocation(double newX, double newY);
-	public void changeDepth(int newZ);
-	public Size getSize();
-	public void resize(double d, double e);
+public interface Spriteable extends Movable, Resizeable {
+    public Position getPosition();
+
+    public void addImage(String imageName, ImageResource imagePrototype);
+
+    public void render(String imageName);
+
+    public void render();
+
+    public void changeLocation(double newX, double newY);
+
+    public void changeDepth(int newZ);
+
+    public Size getSize();
+
+    public void resize(double d, double e);
+
     public DivElement getContainer();
 }

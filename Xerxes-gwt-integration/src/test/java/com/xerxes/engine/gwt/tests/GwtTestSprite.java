@@ -17,16 +17,16 @@ package com.xerxes.engine.gwt.tests;
 
 import com.google.gwt.junit.client.GWTTestCase;
 
-public class GwtTestSprite extends GWTTestCase  
-{
+public class GwtTestSprite extends GWTTestCase {
     @Override
     public String getModuleName() {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
-    public void test_render_called_shouldRenderTheGameScreenCorrectly(){
-                assertTrue(true);
-        }
-	/*private DivElement placeHolder;
+
+    public void test_render_called_shouldRenderTheGameScreenCorrectly() {
+        assertTrue(true);
+    }
+    /*private DivElement placeHolder;
 	private String placeHolderId;
 	private Sprite testSprite;
 	private String spriteId;

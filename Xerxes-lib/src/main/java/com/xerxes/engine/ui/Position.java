@@ -18,88 +18,86 @@ package com.xerxes.engine.ui;
 
 /**
  * represents a position inside the xerxes framework
- * @author Sergi Fernández Cristià ||*||
  *
+ * @author Sergi Fernández Cristià ||*||
  */
-public class Position 
-{
-	private double xPos;
-	private double yPos;
-	private int zPos;
-	private Movable notifier;
-	private static final double epsilon = 0.000001;
-	/**
-	 * 
-	 * @param registeredObject object to notify change of position and depth
-	 * @param posX horizontal position in pixels
-	 * @param posY vertical position in pixels
-	 * @param posZ depth level
-	 */
-	public Position(Movable registeredObject,double posX,double posY,int posZ)
-	{
-		this(posX,posY,posZ);
-		notifier = registeredObject;
-		notifier.notifyMove(posX, posY, posZ);
-	}
-	public Position(double posX,double posY,int posZ)
-	{
-		if(posX<epsilon)posX=epsilon;
-		if(posY<epsilon)posY=epsilon;
-		xPos = posX;
-		yPos = posY;
-		zPos = posZ;
-	}
-	/**
-	 * 
-	 * @return the horizontal position in pixels
-	 */
-	public double getX()
-	{
-		return xPos;
-	}
-	/**
-	 * 
-	 * @return the vertical position in pixels
-	 */
-	public double getY()
-	{
-		return yPos;
-	}
-	/**
-	 * 
-	 * @return the depth level
-	 */
-	public int getZ()
-	{
-		return zPos;
-	}
-	/**
-	 * Changes the location of the position
-	 * @param newX horizontal position
-	 * @param newY vertical position
-	 */
-	public void ChangeLocation(double newX, double newY) 
-	{
-		xPos=newX;
-		yPos=newY;
-		if(notifier!=null)notifier.notifyMove(xPos, yPos, zPos);
-	}
-	/**
-	 * Changes the depth of the sprite object
-	 * @param newZ the depth level
-	 */
-	public void ChangeDepth(int newZ) 
-	{
-		zPos = newZ;
-		if(notifier!=null)notifier.notifyMove(xPos, yPos, zPos);
-	}
-	@Override
-	public boolean equals(Object o){
-		if(!(o instanceof Position))return false;
-		Position object = (Position) o;
-		if(object.getX()!=this.getX())return false;
-		if(object.getY()!=this.getY())return false;
-		if(object.getZ()!=this.getZ())return false;
-		return true;
-	}
+public class Position {
+    private double xPos;
+    private double yPos;
+    private int zPos;
+    private Movable notifier;
+    private static final double epsilon = 0.000001;
+
+    /**
+     * @param registeredObject object to notify change of position and depth
+     * @param posX             horizontal position in pixels
+     * @param posY             vertical position in pixels
+     * @param posZ             depth level
+     */
+    public Position(Movable registeredObject, double posX, double posY, int posZ) {
+        this(posX, posY, posZ);
+        notifier = registeredObject;
+        notifier.notifyMove(posX, posY, posZ);
+    }
+
+    public Position(double posX, double posY, int posZ) {
+        if (posX < epsilon) posX = epsilon;
+        if (posY < epsilon) posY = epsilon;
+        xPos = posX;
+        yPos = posY;
+        zPos = posZ;
+    }
+
+    /**
+     * @return the horizontal position in pixels
+     */
+    public double getX() {
+        return xPos;
+    }
+
+    /**
+     * @return the vertical position in pixels
+     */
+    public double getY() {
+        return yPos;
+    }
+
+    /**
+     * @return the depth level
+     */
+    public int getZ() {
+        return zPos;
+    }
+
+    /**
+     * Changes the location of the position
+     *
+     * @param newX horizontal position
+     * @param newY vertical position
+     */
+    public void ChangeLocation(double newX, double newY) {
+        xPos = newX;
+        yPos = newY;
+        if (notifier != null) notifier.notifyMove(xPos, yPos, zPos);
+    }
+
+    /**
+     * Changes the depth of the sprite object
+     *
+     * @param newZ the depth level
+     */
+    public void ChangeDepth(int newZ) {
+        zPos = newZ;
+        if (notifier != null) notifier.notifyMove(xPos, yPos, zPos);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Position)) return false;
+        Position object = (Position) o;
+        if (object.getX() != this.getX()) return false;
+        if (object.getY() != this.getY()) return false;
+        if (object.getZ() != this.getZ()) return false;
+        return true;
+    }
 }

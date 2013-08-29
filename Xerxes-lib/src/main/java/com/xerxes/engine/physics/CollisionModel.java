@@ -14,63 +14,56 @@
     along with Xerxes game engine.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.xerxes.engine.physics;
+
 import com.xerxes.engine.ui.Position;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class CollisionModel 
-{
-	private double minX;
-	private double maxX;
-	private double minY;
-	private double maxY;
+public class CollisionModel {
+    private double minX;
+    private double maxX;
+    private double minY;
+    private double maxY;
     private Position[] points;
-	
-	public CollisionModel(Position[] points)
-	{
-		List<Double> horizontalPosList = new ArrayList<Double>();
-		List<Double> verticalPosList = new ArrayList<Double>();
-		for(Position pos:points)
-		{
-			horizontalPosList.add(pos.getX());
-			verticalPosList.add(pos.getY());
-		}
-        this.points = points;
-		Collections.sort(horizontalPosList);
-		Collections.sort(verticalPosList);
-		minX=horizontalPosList.get(0);
-		maxX=horizontalPosList.get(horizontalPosList.size()-1);
-		minY=verticalPosList.get(0);
-		maxY=verticalPosList.get(verticalPosList.size()-1);
-	}
 
-    public boolean collidesWith(CollisionModel collisionModel)
-    {
-        for(Position position : collisionModel.points){
-            if(collidesWithPosition(position)) return true;
+    public CollisionModel(Position[] points) {
+        List<Double> horizontalPosList = new ArrayList<Double>();
+        List<Double> verticalPosList = new ArrayList<Double>();
+        for (Position pos : points) {
+            horizontalPosList.add(pos.getX());
+            verticalPosList.add(pos.getY());
+        }
+        this.points = points;
+        Collections.sort(horizontalPosList);
+        Collections.sort(verticalPosList);
+        minX = horizontalPosList.get(0);
+        maxX = horizontalPosList.get(horizontalPosList.size() - 1);
+        minY = verticalPosList.get(0);
+        maxY = verticalPosList.get(verticalPosList.size() - 1);
+    }
+
+    public boolean collidesWith(CollisionModel collisionModel) {
+        for (Position position : collisionModel.points) {
+            if (collidesWithPosition(position)) return true;
         }
         return false;
     }
 
-    private boolean collidesWithPosition(Position position)
-    {
+    private boolean collidesWithPosition(Position position) {
         return (collidesWithHorizontalAxis(position.getX()) && collidesWithVerticalAxis(position.getY()));
     }
 
-    private boolean collidesWithHorizontalAxis(double horizontalPosition)
-    {
+    private boolean collidesWithHorizontalAxis(double horizontalPosition) {
         return collidesWithPoint(horizontalPosition, minX, maxX);
     }
 
-    private boolean collidesWithVerticalAxis(double verticalPosition)
-    {
+    private boolean collidesWithVerticalAxis(double verticalPosition) {
         return collidesWithPoint(verticalPosition, minY, maxY);
     }
 
-    private boolean collidesWithPoint(double outerPos, double minPos, double maxPos)
-    {
+    private boolean collidesWithPoint(double outerPos, double minPos, double maxPos) {
         return outerPos >= minPos && outerPos <= maxPos;
     }
 }

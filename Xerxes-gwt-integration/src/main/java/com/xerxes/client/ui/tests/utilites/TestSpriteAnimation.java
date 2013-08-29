@@ -18,33 +18,45 @@ package com.xerxes.client.ui.tests.utilites;
 import com.google.gwt.resources.client.ClientBundle;
 import com.google.gwt.resources.client.ImageResource;
 
-public interface TestSpriteAnimation extends ClientBundle  {
-	
-	@Source("187.png")
-	public ImageResource NW1();
-	@Source("188.png")
-	public ImageResource NW2();
-	@Source("189.png")
-	public ImageResource NW3();
-	@Source("190.png")
-	public ImageResource NW4();
-	@Source("191.png")
-	public ImageResource NW5();
-	@Source("192.png")
-	public ImageResource NW6();
-	@Source("193.png")
-	public ImageResource NW7();
-	@Source("194.png")
-	public ImageResource NW8();
-	@Source("195.png")
-	public ImageResource NW9();
-	@Source("196.png")
-	public ImageResource NW10();
-	@Source("197.png")
-	public ImageResource NW11();
-	@Source("198.png")
-	public ImageResource NW12();
-	@Source("199.png")
-	public ImageResource NW13();
+public interface TestSpriteAnimation extends ClientBundle {
+
+    @Source("187.png")
+    public ImageResource NW1();
+
+    @Source("188.png")
+    public ImageResource NW2();
+
+    @Source("189.png")
+    public ImageResource NW3();
+
+    @Source("190.png")
+    public ImageResource NW4();
+
+    @Source("191.png")
+    public ImageResource NW5();
+
+    @Source("192.png")
+    public ImageResource NW6();
+
+    @Source("193.png")
+    public ImageResource NW7();
+
+    @Source("194.png")
+    public ImageResource NW8();
+
+    @Source("195.png")
+    public ImageResource NW9();
+
+    @Source("196.png")
+    public ImageResource NW10();
+
+    @Source("197.png")
+    public ImageResource NW11();
+
+    @Source("198.png")
+    public ImageResource NW12();
+
+    @Source("199.png")
+    public ImageResource NW13();
 
 }

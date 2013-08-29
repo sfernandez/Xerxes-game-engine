@@ -18,12 +18,13 @@ package com.xerxes.client.ui.tests.utilites;
 import com.google.gwt.resources.client.ClientBundle;
 import com.google.gwt.resources.client.ImageResource;
 
-public interface ImageBundleExample extends ClientBundle 
-{
-	@Source("key.gif")
-	public ImageResource KeyIcon();
-	@Source("compass.gif")
-	public ImageResource CompassIcon();
-	@Source("Map.gif")
-	public ImageResource MapIcon();
+public interface ImageBundleExample extends ClientBundle {
+    @Source("key.gif")
+    public ImageResource KeyIcon();
+
+    @Source("compass.gif")
+    public ImageResource CompassIcon();
+
+    @Source("Map.gif")
+    public ImageResource MapIcon();
 }

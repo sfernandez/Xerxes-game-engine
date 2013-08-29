@@ -25,69 +25,59 @@ import com.xerxes.engine.ui.animation.Animatable;
 import java.util.HashMap;
 import java.util.List;
 
-public class Actor 
-{
+public class Actor {
 
-	private Spriteable sprite;
-	private HashMap<String,Animatable> animations;
-	private HashMap<String,ActorAction> actions;
+    private Spriteable sprite;
+    private HashMap<String, Animatable> animations;
+    private HashMap<String, ActorAction> actions;
     private List<String> disabledActions;
 
-    public Actor(Spriteable sprite){
+    public Actor(Spriteable sprite) {
         initActor(sprite);
     }
 
-    private void initActor(Spriteable sprite){
-        this.sprite=sprite;
-        this.actions=new HashMap<String, ActorAction>();
+    private void initActor(Spriteable sprite) {
+        this.sprite = sprite;
+        this.actions = new HashMap<String, ActorAction>();
         this.animations = new HashMap<String, Animatable>();
     }
-	
-	public Actor(Spriteable sprite,Animatable[] animations)
-	{
-        initActor(sprite);
-		for(Animatable animation:animations)
-		{
-			this.animations.put(animation.getName(), animation);
-		}
-	}
 
-    public void addAnimation(Animatable animation){
+    public Actor(Spriteable sprite, Animatable[] animations) {
+        initActor(sprite);
+        for (Animatable animation : animations) {
+            this.animations.put(animation.getName(), animation);
+        }
+    }
+
+    public void addAnimation(Animatable animation) {
         this.animations.put(animation.getName(), animation);
     }
-	
-	public void addAction(String actionName, ActorAction action)
-	{
-		actions.put(actionName, action);
-	}
-	
-	public void executeAction(String actionName)
-	{
-		actions.get(actionName).doAction(this);
-	}
-	
-	public void render() 
-	{
-		sprite.render();
-	}
-	
-	public void render(String imageName)
-	{
-		sprite.render(imageName);
-	}
 
-	public void play(String animationName) 
-	{
-		animations.get(animationName).play(sprite);
-	}
+    public void addAction(String actionName, ActorAction action) {
+        actions.put(actionName, action);
+    }
 
-    public Spriteable getSprite()
-    {
+    public void executeAction(String actionName) {
+        actions.get(actionName).doAction(this);
+    }
+
+    public void render() {
+        sprite.render();
+    }
+
+    public void render(String imageName) {
+        sprite.render(imageName);
+    }
+
+    public void play(String animationName) {
+        animations.get(animationName).play(sprite);
+    }
+
+    public Spriteable getSprite() {
         return this.sprite;
     }
 
-    public CollisionModel getCollisionModel()
-    {
+    public CollisionModel getCollisionModel() {
         Position spritePosition = sprite.getPosition();
         Size spriteSize = sprite.getSize();
         double xPos = spritePosition.getX();
@@ -95,9 +85,9 @@ public class Actor
         double width = spriteSize.getWidth();
         double height = spriteSize.getHeight();
         Position firstPosition = new Position(xPos, yPos, 0);
-        Position secondPosition = new Position(xPos+width, yPos, 0);
-        Position thirdPosition = new Position(xPos, yPos+height, 0);
-        Position fourthPosition = new Position(xPos+width, yPos+height, 0);
+        Position secondPosition = new Position(xPos + width, yPos, 0);
+        Position thirdPosition = new Position(xPos, yPos + height, 0);
+        Position fourthPosition = new Position(xPos + width, yPos + height, 0);
         Position[] positions = new Position[]{firstPosition, secondPosition, thirdPosition, fourthPosition};
         return new CollisionModel(positions);
     }

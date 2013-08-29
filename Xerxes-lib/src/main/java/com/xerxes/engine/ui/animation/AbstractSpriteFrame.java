@@ -10,39 +10,34 @@ public abstract class AbstractSpriteFrame implements Playable {
     protected Size currentSize;
     protected Position currentPosition;
 
-    protected AbstractSpriteFrame(String imageName, Position position,Size size)
-    {
-        currentImageName= imageName;
+    protected AbstractSpriteFrame(String imageName, Position position, Size size) {
+        currentImageName = imageName;
         currentPosition = position;
         currentSize = size;
     }
 
-    public String getCurrentImageName()
-    {
+    public String getCurrentImageName() {
         return currentImageName;
     }
 
-    public Size getCurrentSize()
-    {
+    public Size getCurrentSize() {
         return currentSize;
     }
 
-    public Position getCurrentPosition()
-    {
+    public Position getCurrentPosition() {
         return currentPosition;
     }
 
     @Override
-    public boolean equals(Object frame)
-    {
-        if(!(frame instanceof AbstractSpriteFrame))return false;
-        AbstractSpriteFrame frameToCompare=(AbstractSpriteFrame)frame;
-        if(currentImageName!=frameToCompare.currentImageName)return false;
+    public boolean equals(Object frame) {
+        if (!(frame instanceof AbstractSpriteFrame)) return false;
+        AbstractSpriteFrame frameToCompare = (AbstractSpriteFrame) frame;
+        if (currentImageName != frameToCompare.currentImageName) return false;
         return true;
     }
+
     @Override
-    public int hashCode()
-    {
+    public int hashCode() {
         return currentImageName.hashCode();
     }
 }

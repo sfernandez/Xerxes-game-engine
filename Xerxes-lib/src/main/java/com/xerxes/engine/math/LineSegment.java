@@ -19,56 +19,55 @@ import com.xerxes.engine.ui.Position;
 
 public class LineSegment {
 
-	private Position initialPosition;
-	private Position finalPosition;
-	private Pendent pendent;
-	private static final double epsilon = 0.000001;
-	public LineSegment(Position initialPosition, Position finalPosition) 
-	{
-		this.initialPosition = initialPosition;
-		this.finalPosition = finalPosition;
-		pendent = new Pendent();
-	}
-	public Position getInitialPosition()
-	{
-		return initialPosition;
-	}
-	public Position getFinalPosition()
-	{
-		return finalPosition;
-	}
-	public Position getPosition(double increment) 
-	{
-		if(increment<initialPosition.getX())increment=initialPosition.getX()+increment;
-		double yIncognita;
-		double xIncognita;
-		double yKnow = finalPosition.getY();
-		double m = pendent.getPendent();
-		double horizontalCalc = m*(increment-finalPosition.getX());
-		yIncognita = horizontalCalc+yKnow;
-		xIncognita = increment;
-		return new Position((int)xIncognita,(int)yIncognita,0);
-	}
-	public class Pendent
-	{
-		public double getPendent()
-		{
-			double calcY = finalPosition.getY()-initialPosition.getY();
-			double calcX = finalPosition.getX()-initialPosition.getX();
-			if(calcY<epsilon)calcY=epsilon;
-			if(calcX<epsilon)calcX=epsilon;
-			return calcY/calcX;
-		}
-	}
-	public Pendent getPendent()
-	{
-		return pendent;
-	}
-	public double getLineEq() 
-	{
-		double pendent = getPendent().getPendent();
-		double lineEq = initialPosition.getY() - (pendent*initialPosition.getX());
-		return Math.abs(lineEq);
-	}
+    private Position initialPosition;
+    private Position finalPosition;
+    private Pendent pendent;
+    private static final double epsilon = 0.000001;
+
+    public LineSegment(Position initialPosition, Position finalPosition) {
+        this.initialPosition = initialPosition;
+        this.finalPosition = finalPosition;
+        pendent = new Pendent();
+    }
+
+    public Position getInitialPosition() {
+        return initialPosition;
+    }
+
+    public Position getFinalPosition() {
+        return finalPosition;
+    }
+
+    public Position getPosition(double increment) {
+        if (increment < initialPosition.getX()) increment = initialPosition.getX() + increment;
+        double yIncognita;
+        double xIncognita;
+        double yKnow = finalPosition.getY();
+        double m = pendent.getPendent();
+        double horizontalCalc = m * (increment - finalPosition.getX());
+        yIncognita = horizontalCalc + yKnow;
+        xIncognita = increment;
+        return new Position((int) xIncognita, (int) yIncognita, 0);
+    }
+
+    public class Pendent {
+        public double getPendent() {
+            double calcY = finalPosition.getY() - initialPosition.getY();
+            double calcX = finalPosition.getX() - initialPosition.getX();
+            if (calcY < epsilon) calcY = epsilon;
+            if (calcX < epsilon) calcX = epsilon;
+            return calcY / calcX;
+        }
+    }
+
+    public Pendent getPendent() {
+        return pendent;
+    }
+
+    public double getLineEq() {
+        double pendent = getPendent().getPendent();
+        double lineEq = initialPosition.getY() - (pendent * initialPosition.getX());
+        return Math.abs(lineEq);
+    }
 
 }
