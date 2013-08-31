@@ -12,7 +12,13 @@ import com.xerxes.engine.ui.animation.SpriteImageFrame;
 
 public class Game implements EntryPoint {
 
+    private GameTimer timer;
+
+    private CollisionRegister register;
+
     public void onModuleLoad() {
+        timer = GameTimer.getInstance();
+        register = CollisionRegister.getInstance();
         Charset charset = GWT.create(Charset.class);
         KeyboardController tankController = new KeyboardController();
         final GameScreen screen = new GameScreen(new Position(20, 20, 1), new Size(320, 240), "#000000", "#000000", new GameController[]{tankController});
@@ -55,7 +61,7 @@ public class Game implements EntryPoint {
                 Charset charset = GWT.create(Charset.class);
                 final Sprite shotSprite = new Sprite("bullet", 0, 0, 1);
                 final Actor shotActor = new Actor(shotSprite);
-                CollisionRegister.getInstance().registerCollision(martian, shotActor, new CollisionAction() {
+                register.registerCollision(martian, shotActor, new CollisionAction() {
                     @Override
                     public void doAction(Actor firstActor, Actor secondActor) {
                         Window.alert("shot gotcha!!!!! yeah!");
@@ -92,7 +98,7 @@ public class Game implements EntryPoint {
         martian.render();
         martian.play("martianMoving");
         tank.render();
-        CollisionRegister.getInstance().start();
+        timer.start();
     }
 
 }
