@@ -27,7 +27,7 @@ public class GwtTestSprite extends GWTTestCase {
         assertTrue(true);
     }
     /*private DivElement placeHolder;
-	private String placeHolderId;
+    private String placeHolderId;
 	private Sprite testSprite;
 	private String spriteId;
 	private int testPosX;

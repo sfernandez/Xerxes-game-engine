@@ -24,14 +24,14 @@ public class GameTimer {
             @Override
             public void run() {
                 CollisionRegister.getInstance().check();
-                for(TimerActorEvent actorEvent : actorEvents){
+                for (TimerActorEvent actorEvent : actorEvents) {
                     actorEvent.doAction();
                 }
             }
         };
     }
 
-    public void addActorEvent(TimerActorEvent event){
+    public void addActorEvent(TimerActorEvent event) {
         actorEvents.add(event);
     }
 

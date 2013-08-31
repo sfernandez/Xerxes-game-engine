@@ -12,7 +12,7 @@ public class GwtTestGameScreen extends GWTTestCase {
         assertTrue(true);
     }
     /*private GameScreen sut;
-	private static final String bgColor="#FFFFFF";
+    private static final String bgColor="#FFFFFF";
 	private static final String borderColor="#000000";
 	private static final double xPos=100;
 	private static final double yPos=100;

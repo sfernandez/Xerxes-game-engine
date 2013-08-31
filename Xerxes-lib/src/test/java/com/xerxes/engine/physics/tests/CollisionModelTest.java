@@ -23,7 +23,7 @@ public class CollisionModelTest extends TestCase {
         assertTrue("incorrect position", actual);
     }
     /*public void test_CollidesWith_whenCollisionModelIsATriange_andTestPointIsInsideTheTriangle_shouldReturnTrue()
-	{
+    {
 		CollisionModel sut = getTriangleCollisionModel();
 		Position testPosition = new Position(5.0,5.0,1);
 		boolean actual = sut.collidesWith(testPosition);

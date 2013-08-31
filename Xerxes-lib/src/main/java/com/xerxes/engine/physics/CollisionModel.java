@@ -47,7 +47,7 @@ public class CollisionModel {
         boolean collidesMaxPosX = collidesWithHorizontalAxis(collisionModel.maxX);
         boolean collidesMinPosY = collidesWithVerticalAxis(collisionModel.minY);
         boolean collidesMaxPosY = collidesWithVerticalAxis(collisionModel.maxY);
-        if((collidesMinPosX || collidesMaxPosX) && (collidesMinPosY || collidesMaxPosY)){
+        if ((collidesMinPosX || collidesMaxPosX) && (collidesMinPosY || collidesMaxPosY)) {
             return true;
         }
         return false;
