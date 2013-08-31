@@ -2,7 +2,6 @@ package com.example.client;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.xerxes.engine.game.*;
@@ -59,8 +58,8 @@ public class Game implements EntryPoint {
             @Override
             public void doAction(Actor currentActor) {
                 Charset charset = GWT.create(Charset.class);
-                final Sprite shotSprite = new Sprite("bullet", 0, 0, 1);
-                final Actor shotActor = new Actor(shotSprite);
+                Sprite shotSprite = new Sprite("bullet", 0, 0, 1);
+                Actor shotActor = new Actor(shotSprite);
                 register.registerCollision(martian, shotActor, new CollisionAction() {
                     @Override
                     public void doAction(Actor firstActor, Actor secondActor) {
@@ -76,15 +75,15 @@ public class Game implements EntryPoint {
                 currentYPosition -= 10;
                 shotSprite.changeLocation(currentXPosition + 10, currentYPosition);
                 shotSprite.render();
-                Timer timer = new Timer() {
+                timer.addActorEvent(new TimerActorEvent(new Actor[]{shotActor}, new TimerActorEventAction() {
                     @Override
-                    public void run() {
-                        Position shotPosition = shotSprite.getPosition();
+                    public void doEventAction(Actor[] actors) {
+                        Spriteable sprite = actors[0].getSprite();
+                        Position shotPosition = sprite.getPosition();
                         double newY = shotPosition.getY() - 15;
                         shotPosition.ChangeLocation(shotPosition.getX(), newY);
                     }
-                };
-                timer.scheduleRepeating(100);
+                }));
             }
         });
         tankController.addActor(tank);
