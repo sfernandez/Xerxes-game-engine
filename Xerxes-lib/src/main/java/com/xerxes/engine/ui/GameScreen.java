@@ -4,6 +4,7 @@ package com.xerxes.engine.ui;
 import com.google.gwt.dom.client.DivElement;
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.NativeEvent;
+import com.google.gwt.dom.client.Style;
 import com.google.gwt.dom.client.Style.BorderStyle;
 import com.google.gwt.dom.client.Style.Position;
 import com.google.gwt.dom.client.Style.Unit;
@@ -53,6 +54,8 @@ public class GameScreen extends Widget {
         divElement.getStyle().setLeft(position.getY(), Unit.PX);
         divElement.getStyle().setWidth(size.getWidth(), Unit.PX);
         divElement.getStyle().setHeight(size.getHeight(), Unit.PX);
+        divElement.getStyle().setOverflow(Style.Overflow.HIDDEN);
+
         Event.addNativePreviewHandler(new Event.NativePreviewHandler() {
             @Override
             public void onPreviewNativeEvent(Event.NativePreviewEvent event) {
