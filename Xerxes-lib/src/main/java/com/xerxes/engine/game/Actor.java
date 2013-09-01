@@ -31,6 +31,15 @@ public class Actor {
     private HashMap<String, Animatable> animations;
     private HashMap<String, ActorAction> actions;
     private List<String> disabledActions;
+    private ActorAction currentAction;
+
+    public ActorAction getCurrentAction(){
+        return currentAction;
+    }
+
+    public void resetCurrentAction(){
+        currentAction = null;
+    }
 
     public Actor(Spriteable sprite) {
         initActor(sprite);
@@ -58,7 +67,19 @@ public class Actor {
     }
 
     public void executeAction(String actionName) {
-        actions.get(actionName).doAction(this);
+        if(this.currentAction == null){
+            GameTimer timer = GameTimer.getInstance();
+            this.currentAction = actions.get(actionName);
+            timer.addOneTimeActorEvent(new TimerActorEvent(new Actor[]{this}, new TimerActorEventAction() {
+                @Override
+                public void doEventAction(Actor[] actors) {
+                    Actor currentActor = actors[0];
+                    currentActor.getCurrentAction().doAction(currentActor);
+                    currentActor.resetCurrentAction();
+                }
+            }));
+        }
+
     }
 
     public void render() {

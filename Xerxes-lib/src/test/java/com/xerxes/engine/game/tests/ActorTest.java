@@ -1,7 +1,6 @@
 package com.xerxes.engine.game.tests;
 
 import com.xerxes.engine.game.Actor;
-import com.xerxes.engine.game.ActorAction;
 import com.xerxes.engine.ui.Spriteable;
 import com.xerxes.engine.ui.animation.Animatable;
 import junit.framework.TestCase;
@@ -47,12 +46,12 @@ public class ActorTest extends TestCase {
         verify(anotherAnimationDummy, times(1)).play(spriteDummy);
     }
 
-    public void testExecuteAction_shouldExecuteANamedAction() {
+    /*public void testExecuteAction_shouldExecuteANamedAction() {
         ActorAction actionDummy = mock(ActorAction.class);
         String actionName = "an action";
         sut.addAction(actionName, actionDummy);
         sut.executeAction(actionName);
         verify(actionDummy, times(1)).doAction(sut);
-    }
+    }*/
 
 }

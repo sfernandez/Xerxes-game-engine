@@ -15,24 +15,35 @@ public class GameTimer {
 
     private int periodLimit;
 
-    private List<TimerActorEvent> actorEvents;
+    private List<TimerActorEvent> repeatingActorEvents;
+
+    private List<TimerActorEvent> oneTimeActorEvents;
 
     private GameTimer() {
-        actorEvents = new ArrayList<TimerActorEvent>();
+        repeatingActorEvents = new ArrayList<TimerActorEvent>();
+        oneTimeActorEvents = new ArrayList<TimerActorEvent>();
         periodLimit = DEFAULT_PERIOD_LIMIT;
         timer = new Timer() {
             @Override
             public void run() {
                 CollisionRegister.getInstance().check();
-                for (TimerActorEvent actorEvent : actorEvents) {
+                for (TimerActorEvent actorEvent : repeatingActorEvents) {
                     actorEvent.doAction();
+                }
+                for (TimerActorEvent actorEvent : oneTimeActorEvents){
+                    actorEvent.doAction();
+                    oneTimeActorEvents.remove(actorEvent);
                 }
             }
         };
     }
 
-    public void addActorEvent(TimerActorEvent event) {
-        actorEvents.add(event);
+    public void addOneTimeActorEvent(TimerActorEvent event){
+        oneTimeActorEvents.add(event);
+    }
+
+    public void addRepeatingActorEvent(TimerActorEvent event) {
+        repeatingActorEvents.add(event);
     }
 
     public void setPeriodLimit(int periodLimit) {

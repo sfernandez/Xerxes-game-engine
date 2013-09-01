@@ -75,7 +75,7 @@ public class Game implements EntryPoint {
                 currentYPosition -= 10;
                 shotSprite.changeLocation(currentXPosition + 10, currentYPosition);
                 shotSprite.render();
-                timer.addActorEvent(new TimerActorEvent(new Actor[]{shotActor}, new TimerActorEventAction() {
+                timer.addRepeatingActorEvent(new TimerActorEvent(new Actor[]{shotActor}, new TimerActorEventAction() {
                     @Override
                     public void doEventAction(Actor[] actors) {
                         Spriteable sprite = actors[0].getSprite();
