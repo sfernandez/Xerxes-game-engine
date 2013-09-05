@@ -9,8 +9,6 @@ import com.google.gwt.dom.client.Style.BorderStyle;
 import com.google.gwt.dom.client.Style.Position;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.user.client.Event;
-import com.google.gwt.user.client.Timer;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 import com.xerxes.engine.game.Actor;
 import com.xerxes.engine.game.GameController;
@@ -62,35 +60,16 @@ public class GameScreen extends Widget {
             public void onPreviewNativeEvent(Event.NativePreviewEvent event) {
                 NativeEvent nativeEvent = event.getNativeEvent();
                 String type = nativeEvent.getType();
-
                 if (type.equals("keydown") || type.equals("keyup")) {
                     XKeyboardEvent keyboardGameEvent = new XKeyboardEvent(nativeEvent.getKeyCode(), type);
                     for (GameController controller : controllers) {
                         if (controller instanceof KeyboardController) controller.receiveEvent(keyboardGameEvent);
                     }
                 }
-
             }
         });
         setElement(divElement);
         this.setVisible(false);
-        final Timer t = new Timer() {
-            @Override
-            public void run() {
-                for (int counter = 0; counter < actorList.size(); counter++) {
-                    Actor currentActor = actorList.get(counter);
-                    Spriteable sprite = currentActor.getSprite();
-                    com.xerxes.engine.ui.Position spritePosition = sprite.getPosition();
-                    Size spriteSize = sprite.getSize();
-                    double screenBorderX = size.getWidth();
-                    double testX = screenBorderX - spriteSize.getWidth();
-                    if (spritePosition.getX() > testX || spritePosition.getX() < 0) {
-                        Window.alert("shock");
-                    }
-                }
-            }
-        };
-        t.scheduleRepeating(100);
     }
 
     public void render() {

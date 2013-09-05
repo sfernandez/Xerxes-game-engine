@@ -98,6 +98,12 @@ public class Game implements EntryPoint {
         martian.render();
         martian.play("martianMoving");
         tank.render();
+        CollisionRegister.getInstance().registerCollisionWithGameScreen(tank, screen, new GameScreenCollisionAction() {
+            @Override
+            public void doAction(Actor actor, GameScreen screen) {
+                Window.alert("SHOCK LIMIT!!!");
+            }
+        });
         timer.start();
     }
 

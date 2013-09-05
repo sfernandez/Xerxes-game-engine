@@ -1,6 +1,6 @@
 package com.xerxes.engine.game;
 
-public class Collision {
+public class Collision implements ICollision{
     private Actor firstActor;
     private Actor secondActor;
     private CollisionAction action;
