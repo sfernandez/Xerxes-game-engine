@@ -10,6 +10,7 @@ import com.google.gwt.dom.client.Style.Position;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.user.client.Event;
 import com.google.gwt.user.client.Timer;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 import com.xerxes.engine.game.Actor;
 import com.xerxes.engine.game.GameController;
@@ -78,10 +79,13 @@ public class GameScreen extends Widget {
             public void run() {
                 for (int counter = 0; counter < actorList.size(); counter++) {
                     Actor currentActor = actorList.get(counter);
-                    com.xerxes.engine.ui.Position spritePosition = currentActor.getSprite().getPosition();
+                    Spriteable sprite = currentActor.getSprite();
+                    com.xerxes.engine.ui.Position spritePosition = sprite.getPosition();
+                    Size spriteSize = sprite.getSize();
                     double screenBorderX = size.getWidth();
-                    if (spritePosition.getX() > screenBorderX || spritePosition.getX() < 0) {
-
+                    double testX = screenBorderX - spriteSize.getWidth();
+                    if (spritePosition.getX() > testX || spritePosition.getX() < 0) {
+                        Window.alert("shock");
                     }
                 }
             }

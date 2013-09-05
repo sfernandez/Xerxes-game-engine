@@ -27,6 +27,7 @@ public class Game implements EntryPoint {
         martianSprite.addImage("martian2", charset.Martian2());
         Sprite tankSprite = new Sprite("tank", 0, 220, 1);
         tankSprite.addImage("tank0", charset.Tank());
+        tankSprite.resize(26, 16);
         SpriteAnimation animation = new SpriteAnimation("martianMoving", true);
         animation.setFps(10);
         SpriteImageFrame frame = new SpriteImageFrame("martian");
