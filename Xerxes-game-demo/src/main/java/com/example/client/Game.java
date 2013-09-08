@@ -109,7 +109,13 @@ public class Game implements EntryPoint {
                     actor.disableAction("moveLeft");
                 }
             }
-        });
+        }, new GameScreenCollisionAction() {
+                    @Override
+                    public void doAction(Actor actor, GameScreen screen) {
+                        actor.enableAction("moveRight");
+                        actor.enableAction("moveLeft");
+                    }
+                });
         timer.start();
     }
 

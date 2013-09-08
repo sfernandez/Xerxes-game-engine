@@ -24,8 +24,12 @@ public class GameScreenCollision implements ICollision {
         Size spriteSize = sprite.getSize();
         double screenBorderX = screen.getSize().getWidth();
         double testX = screenBorderX - spriteSize.getWidth();
-        if (spritePosition.getX() > testX || spritePosition.getX() < 0) {
+        if (isInCheckPosition(spritePosition, testX)) {
             action.doAction(actor, screen);
         }
+    }
+
+    protected boolean isInCheckPosition(Position spritePosition, double testX) {
+        return spritePosition.getX() > testX || spritePosition.getX() < 0;
     }
 }

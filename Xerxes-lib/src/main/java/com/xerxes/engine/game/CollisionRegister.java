@@ -24,9 +24,15 @@ public class CollisionRegister {
         collisions.add(new Collision(firstActor, secondActor, action));
     }
 
-    public void registerCollisionWithGameScreen(Actor actor, GameScreen screen, GameScreenCollisionAction action)
+    public void registerCollisionWithGameScreen(Actor actor, GameScreen screen, GameScreenCollisionAction collisionAction)
     {
-        collisions.add(new GameScreenCollision(actor, screen, action));
+        collisions.add(new GameScreenCollision(actor, screen, collisionAction));
+    }
+
+    public void registerCollisionWithGameScreen(Actor actor, GameScreen screen, GameScreenCollisionAction collisionAction, GameScreenCollisionAction unCollisionAction)
+    {
+        registerCollisionWithGameScreen(actor, screen, collisionAction);
+        collisions.add(new GameScreenUnCollision(actor, screen, unCollisionAction));
     }
 
     public static CollisionRegister getInstance() {
