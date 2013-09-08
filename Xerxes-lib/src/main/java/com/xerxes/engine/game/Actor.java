@@ -22,6 +22,7 @@ import com.xerxes.engine.ui.Size;
 import com.xerxes.engine.ui.Spriteable;
 import com.xerxes.engine.ui.animation.Animatable;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -33,11 +34,11 @@ public class Actor {
     private List<String> disabledActions;
     private ActorAction currentAction;
 
-    public ActorAction getCurrentAction(){
+    public ActorAction getCurrentAction() {
         return currentAction;
     }
 
-    public void resetCurrentAction(){
+    public void resetCurrentAction() {
         currentAction = null;
     }
 
@@ -49,6 +50,7 @@ public class Actor {
         this.sprite = sprite;
         this.actions = new HashMap<String, ActorAction>();
         this.animations = new HashMap<String, Animatable>();
+        this.disabledActions = new ArrayList<String>();
     }
 
     public Actor(Spriteable sprite, Animatable[] animations) {
@@ -67,19 +69,30 @@ public class Actor {
     }
 
     public void executeAction(String actionName) {
-        if(this.currentAction == null){
-            GameTimer timer = GameTimer.getInstance();
-            this.currentAction = actions.get(actionName);
-            timer.addOneTimeActorEvent(new TimerActorEvent(new Actor[]{this}, new TimerActorEventAction() {
-                @Override
-                public void doEventAction(Actor[] actors) {
-                    Actor currentActor = actors[0];
-                    currentActor.getCurrentAction().doAction(currentActor);
-                    currentActor.resetCurrentAction();
-                }
-            }));
+        if (!disabledActions.contains(actionName)) {
+            if (this.currentAction == null) {
+                GameTimer timer = GameTimer.getInstance();
+                this.currentAction = actions.get(actionName);
+                timer.addOneTimeActorEvent(new TimerActorEvent(new Actor[]{this}, new TimerActorEventAction() {
+                    @Override
+                    public void doEventAction(Actor[] actors) {
+                        Actor currentActor = actors[0];
+                        currentActor.getCurrentAction().doAction(currentActor);
+                        currentActor.resetCurrentAction();
+                    }
+                }));
+            }
         }
 
+
+    }
+
+    public void disableAction(String action) {
+        disabledActions.add(action);
+    }
+
+    public void enableAction(String action) {
+        disabledActions.remove(action);
     }
 
     public void render() {

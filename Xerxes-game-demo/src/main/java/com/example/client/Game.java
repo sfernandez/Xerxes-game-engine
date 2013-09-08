@@ -101,7 +101,13 @@ public class Game implements EntryPoint {
         CollisionRegister.getInstance().registerCollisionWithGameScreen(tank, screen, new GameScreenCollisionAction() {
             @Override
             public void doAction(Actor actor, GameScreen screen) {
-                Window.alert("SHOCK LIMIT!!!");
+                Spriteable sprite = actor.getSprite();
+                if(sprite.getPosition().getX() < 0){
+                    actor.disableAction("moveRight");
+                }
+                else{
+                    actor.disableAction("moveLeft");
+                }
             }
         });
         timer.start();
