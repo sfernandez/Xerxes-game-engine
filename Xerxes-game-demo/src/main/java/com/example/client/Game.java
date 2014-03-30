@@ -20,7 +20,7 @@ public class Game implements EntryPoint {
         register = CollisionRegister.getInstance();
         Charset charset = GWT.create(Charset.class);
         KeyboardController tankController = new KeyboardController();
-        final GameScreen screen = new GameScreen(new Position(20, 20, 1), new Size(320, 240), "#000000", "#000000", new GameController[]{tankController});
+        final GameScreen screen = new GameScreen(new Position(100, 100, 1), new Size(320, 240), "#000000", "#000000", new GameController[]{tankController});
         Sprite martianSprite = new Sprite("martian", 10, 10, 1);
         martianSprite.resize(22, 16);
         martianSprite.addImage("martian", charset.Martian1());
@@ -102,7 +102,7 @@ public class Game implements EntryPoint {
             @Override
             public void doAction(Actor actor, GameScreen screen) {
                 Spriteable sprite = actor.getSprite();
-                if(sprite.getPosition().getX() < 0){
+                if(sprite.getPosition().getX() <= 0){
                     actor.disableAction("moveRight");
                 }
                 else{
